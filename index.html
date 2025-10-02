@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edenova AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      /* Light Theme Colors */
+      --bg-primary: #f0f2f5;
+      --header-bg: rgba(255, 255, 255, 0.7);
+      --card-bg: rgba(255, 255, 255, 0.6);
+      --card-border: rgba(0, 0, 0, 0.07);
+      --control-bg: rgba(0, 0, 0, 0.05);
+      --control-bg-hover: rgba(0, 0, 0, 0.1);
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --accent-primary: #4f46e5;
+      --accent-primary-hover: #6366f1;
+      --shadow-color-soft: rgba(0, 0, 0, 0.12); /* New soft shadow */
+      --glow-color: rgba(79, 70, 229, 0.15); /* Accent color glow */
+      --card-glow: radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.08), transparent 40%);
+
+      /* Animated background blob colors */
+      --blob-color-1: rgba(79, 70, 229, 0.15); /* Indigo */
+      --blob-color-2: rgba(59, 130, 246, 0.1);  /* Blue */
+      --blob-color-3: rgba(167, 139, 250, 0.1); /* Violet */
+
+      /* Neon Button Colors */
+      --neon-blue: #0ea5e9; /* sky-500 */
+      --neon-pink: #ec4899; /* pink-500 */
+      --neon-glow-blue: rgba(14, 165, 233, 0.5);
+      --neon-glow-pink: rgba(236, 72, 153, 0.5);
+      --neon-glow-mix: rgba(192, 132, 252, 0.5); /* purple-400 */
+    }
+
+    html.dark {
+      /* Dark Theme Colors */
+      --bg-primary: #0A0D14;
+      --header-bg: rgba(10, 13, 20, 0.5);
+      --card-bg: rgba(28, 37, 58, 0.4);
+      --card-border: rgba(56, 189, 248, 0.15);
+      --control-bg: rgba(56, 189, 248, 0.1);
+      --control-bg-hover: rgba(56, 189, 248, 0.2);
+      --text-primary: #E6F1FF;
+      --text-secondary: #9FB1C5;
+      --accent-primary: #38bdf8;
+      --accent-primary-hover: #7dd3fc;
+      --shadow-color-soft: rgba(0, 0, 0, 0.5);
+      --glow-color: rgba(56, 189, 248, 0.3);
+
+      /* Animated background blob colors */
+      --blob-color-1: rgba(56, 189, 248, 0.2);
+      --blob-color-2: rgba(192, 132, 252, 0.15);
+      --blob-color-3: rgba(244, 114, 182, 0.15);
+      
+      /* Neon Button Colors */
+      --neon-blue: #38bdf8; /* sky-400 */
+      --neon-pink: #f472b6; /* pink-400 */
+      --neon-glow-blue: rgba(56, 189, 248, 0.6);
+      --neon-glow-pink: rgba(244, 114, 182, 0.6);
+      --neon-glow-mix: rgba(216, 180, 254, 0.6); /* purple-300 */
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        --mouse-x: 50%;
+        --mouse-y: 50%;
+        background: 
+            radial-gradient(40vmax circle at var(--mouse-x) var(--mouse-y), var(--blob-color-1), transparent 80%),
+            radial-gradient(30vmax circle at 20% 80%, var(--blob-color-2), transparent 80%),
+            radial-gradient(35vmax circle at 80% 20%, var(--blob-color-3), transparent 80%);
+        animation: moveBlobs 25s linear infinite alternate;
+    }
+    
+    html.dark body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), 
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 3rem 3rem;
+        background-position: center;
+        -webkit-mask-image: radial-gradient(ellipse 100% 100% at center, black 60%, transparent 100%);
+        mask-image: radial-gradient(ellipse 100% 100% at center, black 60%, transparent 100%);
+    }
+
+    @keyframes moveBlobs {
+        0% {
+            background-position: 0% 50%, 20% 80%, 80% 20%;
+        }
+        100% {
+            background-position: 100% 50%, 80% 20%, 20% 80%;
+        }
+    }
+
+    .text-glow {
+        text-shadow: 0 0 8px var(--glow-color);
+    }
+
+    html.dark .text-glow {
+        text-shadow: 0 0 10px var(--glow-color), 0 0 12px var(--accent-primary);
+    }
+
+    .glass-card {
+        background: var(--card-glow, var(--card-bg));
+        border: 1px solid var(--card-border);
+        box-shadow: 0 8px 32px 0 var(--shadow-color-soft);
+        transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                    box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                    border-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    html.dark .glass-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+    }
+
+    .glass-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 48px -8px var(--shadow-color-soft), 
+                    0 0 20px 2px var(--glow-color);
+    }
+
+    html.dark .glass-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px -4px var(--shadow-color-soft), 0 0 20px 0 var(--glow-color);
+        border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    /* Simple scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+    }
+
+    html.dark ::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    html:not(.dark) ::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .anim-fade-in-slide-up-1 {
+        animation: fadeInSlideUp 0.6s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+    .anim-fade-in-slide-up-2 {
+        animation: fadeInSlideUp 0.6s 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+    .anim-fade-in-slide-up-3 {
+        animation: fadeInSlideUp 0.6s 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+    
+    /* Neon Controls Styling */
+    .neon-controls-container {
+      background: var(--header-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 1.5rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      width: max-content;
+      margin: 1rem auto 0 auto;
+      box-shadow: 0 4px 16px var(--shadow-color-soft);
+    }
+
+    .neon-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.3s ease;
+    }
+    
+    .neon-button:hover:not(:disabled) {
+        transform: translateY(-4px);
+    }
+    
+    .neon-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .neon-icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-width: 2px;
+      border-style: solid;
+      position: relative;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .neon-button:hover:not(:disabled) .neon-icon-circle {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px, 0 0 20px;
+    }
+    
+    .neon-button.active .neon-icon-circle {
+      box-shadow: 0 0 8px, 0 0 16px, 0 0 24px;
+    }
+    
+    .neon-icon-blue {
+      border-color: var(--neon-blue);
+      color: var(--neon-blue);
+      box-shadow: 0 0 5px var(--neon-glow-blue), 0 0 10px var(--neon-glow-blue);
+    }
+
+    .neon-icon-mixed {
+        border: 2px solid transparent;
+        background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, linear-gradient(135deg, var(--neon-blue), var(--neon-pink)) border-box;
+        box-shadow: 0 0 8px var(--neon-glow-mix);
+        color: var(--neon-blue);
+    }
+    
+    .neon-icon-pink {
+      border-color: var(--neon-pink);
+      color: var(--neon-pink);
+      box-shadow: 0 0 5px var(--neon-glow-pink), 0 0 10px var(--neon-glow-pink);
+    }
+
+    .neon-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: text-shadow 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .neon-text-blue {
+      color: var(--neon-blue);
+      text-shadow: 0 0 5px var(--neon-glow-blue);
+    }
+    
+    .neon-text-mixed {
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      filter: drop-shadow(0 0 3px var(--neon-glow-mix));
+    }
+
+    .neon-text-pink {
+      color: var(--neon-pink);
+      text-shadow: 0 0 5px var(--neon-glow-pink);
+    }
+
+    /* Mobile specific styles for neon controls */
+    @media (max-width: 640px) {
+      .neon-controls-container {
+        gap: 1rem;
+        padding: 0.75rem;
+        flex-wrap: wrap; /* Allow wrapping */
+        width: 100%; /* Take full width */
+      }
+      .neon-button {
+        transform: scale(0.9);
+      }
+      .neon-button:hover:not(:disabled) {
+        transform: translateY(-2px) scale(0.95);
+      }
+      .neon-text {
+        font-size: 0.65rem;
+      }
+    }
+    
+    .btn-primary {
+        background-image: linear-gradient(to right, #38bdf8 0%, #ec4899 75%, #ec4899 100%);
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 4px 15px 0 rgba(236, 72, 153, 0.3);
+        transition: all 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    }
+    .btn-primary:hover:not(:disabled) {
+        background-position: right center;
+        box-shadow: 0 4px 20px 0 rgba(236, 72, 153, 0.5);
+        transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+        background-color: transparent;
+        border: 1px solid var(--card-border);
+        color: var(--text-secondary);
+        transition: all 0.3s ease;
+    }
+    html.dark .btn-secondary:hover {
+        background-color: var(--control-bg);
+        border-color: var(--neon-blue);
+        color: var(--neon-blue);
+        box-shadow: 0 0 10px var(--glow-color);
+    }
+
+    .icon-btn {
+        height: 36px;
+        width: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        background-color: var(--control-bg);
+        color: var(--text-secondary);
+        transition: all 0.3s ease;
+    }
+    html.dark .icon-btn:hover:not(:disabled) {
+        background-color: var(--control-bg-hover);
+        color: var(--accent-primary);
+        box-shadow: 0 0 10px var(--glow-color);
+    }
+    
+    /* Onboarding Tour Styles */
+    @keyframes tour-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .tour-spotlight {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      animation: tour-fade-in 0.3s ease-out;
+    }
+
+    .tour-highlight {
+        position: absolute;
+        border-radius: 1rem; /* Match card radius */
+        box-shadow: 0 0 0 9999px rgba(10, 13, 20, 0.7);
+        border: 2px solid var(--neon-blue);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+    }
+    
+    .tour-popover {
+        position: absolute;
+        z-index: 9999;
+        width: 320px;
+        max-width: 90vw;
+        padding: 1.5rem;
+        border-radius: 1.25rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    
+    .tour-popover.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Modal Styles */
+    .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(10, 13, 20, 0.7);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 40;
+        animation: fadeIn 0.3s ease-out;
+        /* New styles for robust centering and scrolling */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        overflow-y: auto;
+    }
+    .modal-content {
+        position: relative;
+        z-index: 50;
+        width: 90vw;
+        max-width: 500px;
+        animation: fadeInSlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        margin: auto;
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "react/": "https://aistudiocdn.com/react@^19.1.1/",
+      "react": "https://aistudiocdn.com/react@^19.1.1",
+      "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0",
+      "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/"
+    }
+  }
+  </script>
+</head>
+<body class="bg-[var(--bg-primary)]">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
