@@ -53,7 +53,8 @@ async function callApi(payload: any): Promise<GenerateContentResponse> {
     } else {
         // Use default Gemini SDK
         const { model, ...restPayload } = payload;
-        return ai.models.generateContent({ model, ...restPayload });
+        const result = await ai.models.generateContent({ model, ...restPayload });
+        return result.response;
     }
 }
 
@@ -183,7 +184,7 @@ export async function improvePrompt(prompt: string): Promise<string> {
         },
     });
     
-    return response.text.trim();
+    return response.text().trim();
 
   } catch (error) {
     console.error("Error improving prompt with API:", error);
@@ -236,7 +237,7 @@ export async function analyzeImageForSuggestions(base64ImageData: string, mimeTy
             },
         });
 
-        const jsonStr = response.text.trim();
+        const jsonStr = response.text().trim();
         const parsedResult = JSON.parse(jsonStr);
 
         if (typeof parsedResult.description === 'string' && Array.isArray(parsedResult.suggestions)) {
