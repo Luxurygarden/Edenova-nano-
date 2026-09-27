@@ -1,0 +1,14 @@
+sku,name,category,supplier,supplier_cost_eur,inbound_shipping_eur,duty_rate,shipping_class,competitor_price_pln,sourcing_model,notes
+EW-FLC-50,Kaptur zimowy z włókniny 50 g/m² – rozmiar M,ochrona-zimowa,Hurtownia EU (do ustalenia),6.20,0.60,0,S,59,stock,Rotacyjny produkt sezonowy; dobra marża
+EW-FLC-80,Kaptur zimowy z włókniny 80 g/m² – rozmiar L z zamkiem,ochrona-zimowa,Hurtownia EU (do ustalenia),11.50,0.90,0,M,99,stock,Premium wersja – zamek + ściągacz
+EW-JKT-POT60,Ocieplacz na donicę Ø60 (juta + filc),ochrona-zimowa,Producent PL (do ustalenia),14.00,1.20,0,M,149,stock,Wyróżnik: estetyka – nie „worek”
+EW-WALL-10,Mata termoizolacyjna do ścian donicy 10 mm (rolka 5 m),ochrona-zimowa,Hurtownia DE (do ustalenia),17.80,1.50,0,M,169,stock,Izolacja od środka – błąd wykonawczy nr 1
+HT-CBL-6,Kabel grzewczy do roślin 6 m z termostatem,ogrzewanie-roslin,Dropship DE (do ustalenia),28.00,0,0,S,249,dropship,Wymaga CE + instrukcji bezpieczeństwa
+HT-CBL-12,Kabel grzewczy do roślin 12 m z termostatem,ogrzewanie-roslin,Dropship DE (do ustalenia),39.00,0,0,S,329,dropship,
+HT-MAT-POT,Mata grzewcza pod donicę 40x40 IP67,ogrzewanie-roslin,Dropship DE (do ustalenia),34.00,0,0,S,289,dropship,
+HT-SENS-WIFI,Czujnik temperatury i wilgotności Wi-Fi do donic,ogrzewanie-roslin,Dropship EU (do ustalenia),18.50,0,0,S,179,dropship,Wejście w segment smart
+IR-DRIP-KIT10,Zestaw kroplujący do 10 donic z komputerem,nawadnianie-donic,Hurtownia EU (do ustalenia),42.00,2.50,0,M,399,stock,Rdzeń kategorii nawadniania
+IR-WINT-KIT,Zestaw zazimowania nawadniania (zawory spustowe + przedmuch),nawadnianie-donic,Hurtownia EU (do ustalenia),16.00,1.20,0,S,149,stock,Sezonowy wrzesień–listopad
+IR-SELF-50,Wkład samonawadniający do donicy 50 cm,nawadnianie-donic,Producent PL (do ustalenia),9.50,0.80,0,M,99,stock,
+PT-FIB-80,Donica fiberglass 80x80x80 antracyt mrozoodporna,donice-premium,Producent PL (do ustalenia),120.00,0,0,XL,1490,dropship,Tylko dropship – gabaryt; nie trzymaj stanu
+BND-WINTER-POT,Zestaw „Zima w donicy” (ocieplacz + mata ścienna + kaptur 80g),zestawy,Kompozycja własna,42.30,3.60,0,M,,bundle,Najwyższa marża – produkt własny

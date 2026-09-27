@@ -1,0 +1,26 @@
+{
+  "_comment": "Parametry silnika cen. Wszystkie kwoty w PLN brutto chyba że napisano inaczej. ZAŁOŻENIA do weryfikacji z księgowością i realnymi stawkami.",
+  "currency": "PLN",
+  "vatRate": 0.23,
+  "eurToPln": 4.30,
+  "paymentFeeRate": 0.029,
+  "paymentFeeFixed": 1.2,
+  "shopifyTxFeeRate": 0.0,
+  "returnsReserveRate": 0.03,
+  "marketingCacRate": 0.12,
+  "freeShippingThreshold": 499,
+  "shippingCostByClass": { "S": 18, "M": 35, "L": 120, "XL": 290 },
+  "shippingChargeByClass": { "S": 19.99, "M": 29.99, "L": 99, "XL": 249 },
+  "minNetMarginRate": 0.25,
+  "targetMarkupByCategory": {
+    "ochrona-zimowa": 2.2,
+    "nawadnianie-donic": 2.0,
+    "ogrzewanie-roslin": 1.9,
+    "donice-premium": 1.8,
+    "zestawy": 2.4
+  },
+  "maxPriceVsCompetitor": 1.05,
+  "liftBelowCompetitor": 0.85,
+  "liftTargetVsCompetitor": 0.97,
+  "roundingEndings": [49, 69, 99]
+}
