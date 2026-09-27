@@ -1,0 +1,39 @@
+variant,module,component,spec_requirement,candidate_component,candidate_supplier,unit_cost_eur,qty_per_unit,status,notes
+S,ROOT,kabel grzewczy,Moc i dlugosc dobrana do objetosci bryly korzeniowej donicy do 60 cm - DO ZWERYFIKOWANIA z kartami katalogowymi producentow,DO USTALENIA,DO USTALENIA,,1,to-verify,Nie zgadywac mocy/dlugosci - potwierdzic na konkretnym komponencie i jego przeznaczeniu
+S,ROOT,termostat / sterownik,Wlacza ogrzewanie ponizej progu temperatury; zgodny z kablem grzewczym,DO USTALENIA,DO USTALENIA,,1,to-verify,Sprawdzic czy wbudowany w kabel czy osobny modul
+S,ROOT,izolacja donicy,Mata izolacyjna wokol scian donicy do 60 cm,DO USTALENIA (kandydat: mata kokosowa),DO USTALENIA,,1,to-verify,Potwierdzic gramature i deklarowane zastosowanie - mata przeciwerozyjna to NIE to samo co izolacja termiczna
+S,ROOT,pasy mocujace,Pasy EDENOVA spinajace izolacje na donicy,DO USTALENIA,DO USTALENIA,,2,to-verify,
+S,CROWN,pokrowiec technicznej wloknina,Wloknina oddychajaca ok. 120-180 g/m2 (do potwierdzenia testem), stabilizacja UV,DO USTALENIA,DO USTALENIA,,1,to-verify,Benchmark funkcjonalny: Windhager Superprotect/Ultraprotect, NOOR BIWAK - analiza funkcji, nie kopiowanie wzoru
+S,CROWN,zamek pionowy,Pelny zamek + mocny suwak,DO USTALENIA,DO USTALENIA,,1,to-verify,
+S,CROWN,sciagacz dolny,Sciagacz + stopery,DO USTALENIA,DO USTALENIA,,1,to-verify,
+S,CROWN,sciagacz gorny (opcja),Opcjonalny sciagacz gorny,DO USTALENIA,DO USTALENIA,,1,to-verify,Decyzja: czy standard czy opcja platna
+S,CROWN,przepust kabla,Wyprowadzenie kabla grzewczego bez uszkodzenia wlokniny,DO USTALENIA,DO USTALENIA,,1,to-verify,
+S,CROWN,kabel/pokrowiec,czujnik temperatury (opcja),Czujnik Wi-Fi lub przewodowy - upsell/cross-sell, nie w bazowym zestawie,DO USTALENIA,DO USTALENIA,,1,to-verify,
+S,PACKAGING,karton + branding,Opakowanie premium z instrukcja PL,DO USTALENIA,DO USTALENIA,,1,to-verify,
+M,ROOT,kabel grzewczy,Moc i dlugosc dobrana do donicy 60-90 cm,DO USTALENIA,DO USTALENIA,,1,to-verify,
+M,ROOT,termostat / sterownik,jw.,DO USTALENIA,DO USTALENIA,,1,to-verify,
+M,ROOT,izolacja donicy,Mata na donice 60-90 cm,DO USTALENIA,DO USTALENIA,,1,to-verify,
+M,ROOT,pasy mocujace,,DO USTALENIA,DO USTALENIA,,2,to-verify,
+M,CROWN,pokrowiec technicznej wloknina,Wieksza wersja pokrowca,DO USTALENIA,DO USTALENIA,,1,to-verify,
+M,CROWN,zamek pionowy,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+M,CROWN,sciagacz dolny,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+M,CROWN,przepust kabla,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+M,PACKAGING,karton + branding,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+L,ROOT,kabel grzewczy,Moc i dlugosc dobrana do donicy 90-130 cm,DO USTALENIA,DO USTALENIA,,1,to-verify,
+L,ROOT,termostat / sterownik,jw.,DO USTALENIA,DO USTALENIA,,1,to-verify,
+L,ROOT,izolacja donicy,Mata na donice 90-130 cm,DO USTALENIA,DO USTALENIA,,1,to-verify,
+L,ROOT,pasy mocujace,,DO USTALENIA,DO USTALENIA,,3,to-verify,
+L,CROWN,pokrowiec technicznej wloknina,Wieksza wersja pokrowca,DO USTALENIA,DO USTALENIA,,1,to-verify,
+L,CROWN,zamek pionowy,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+L,CROWN,sciagacz dolny + gorny,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+L,CROWN,przepust kabla,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+L,PACKAGING,karton + branding,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+XL,ROOT,kabel grzewczy (moze wymagac 2 petli),Moc i dlugosc dla donic powyzej 130 cm - prawdopodobnie wymaga wyzszej mocy lub dwoch petli,DO USTALENIA,DO USTALENIA,,1,to-verify,Zweryfikowac czy jeden kabel wystarczy czy potrzeba dwoch obwodow
+XL,ROOT,termostat / sterownik,jw.,DO USTALENIA,DO USTALENIA,,1,to-verify,
+XL,ROOT,izolacja donicy,Mata na donice powyzej 130 cm,DO USTALENIA,DO USTALENIA,,1,to-verify,
+XL,ROOT,pasy mocujace,,DO USTALENIA,DO USTALENIA,,3,to-verify,
+XL,CROWN,pokrowiec technicznej wloknina XL,Najwieksza wersja pokrowca,DO USTALENIA,DO USTALENIA,,1,to-verify,
+XL,CROWN,zamek pionowy wzmocniony,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+XL,CROWN,sciagacz dolny + gorny,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+XL,CROWN,przepust kabla,,DO USTALENIA,DO USTALENIA,,1,to-verify,
+XL,PACKAGING,karton wzmocniony + branding,,DO USTALENIA,DO USTALENIA,,1,to-verify,

@@ -1,5 +1,7 @@
 # Strategia sklepu
 
+> **Aktualizacja**: ta strategia zostaje w mocy jako mapa kategorii i etapów sezonowych. Nadrzędny priorytet operacyjny to teraz **Olive Winter PRO** jako produkt flagowy (patrz `olive-winter-pro-plan.md`) – filozofia "system + know-how + estetyka", nie pojedyncze akcesoria. Poniższe kategorie 1–5 stają się kontekstem/ruchem SEO wokół flagowca, a nie głównym silnikiem marży.
+
 ## Pozycjonowanie
 Nie „tanie akcesoria ogrodowe”, tylko **systemy ochrony i pielęgnacji roślin w donicach – dobrane przez wykonawcę z 16-letnim doświadczeniem (PL + DE)**.
 Klient premium nie kupuje kaptura. Kupuje pewność, że drzewko w donicy za 3 000 zł przeżyje zimę.
