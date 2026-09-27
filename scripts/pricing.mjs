@@ -1,5 +1,5 @@
 // Silnik cen sklepu: koszt zakupu -> cena detaliczna -> marża netto -> eksport do Shopify.
-// Uruchom: node shop/scripts/pricing.mjs  (wyniki w shop/out/)
+// Uruchom: node scripts/pricing.mjs  (wyniki w out/)
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';

@@ -5,7 +5,7 @@
 // a nastepnie odejmuje koszty NIEUWZGLEDNIONE w landed_cost (platnosci, zwroty, CAC),
 // zeby pokazac realna marze netto/kontrybucyjna - nie tylko brutto.
 //
-// Uzycie: node shop/scripts/unit-economics.mjs
+// Uzycie: node scripts/unit-economics.mjs
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';

@@ -1,24 +1,15 @@
 {
-  "name": "edenova-1.5",
+  "name": "edenova-shop",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "description": "EDENOVA – silnik cen, unit economics i dane operacyjne dla sklepu Shopify (premium ogrody: winter protection, irrigation, plant care).",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "test": "vitest"
-  },
-  "dependencies": {
-    "@google/genai": "^1.20.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "price": "node scripts/pricing.mjs",
+    "unit-economics": "node scripts/unit-economics.mjs",
+    "test": "vitest run"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0",
     "vitest": "^3.2.4"
   }
 }
