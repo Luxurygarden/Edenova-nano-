@@ -16,7 +16,8 @@ edenova-shop/
 ├── docs/automatyzacja.md             # pipeline: dostawca -> cena -> Shopify -> treść -> kampania
 ├── docs/product-lab.md               # pipeline produktowy + stage-gate (retail test -> own product)
 ├── docs/dashboard.md                 # KPI do monitorowania od pierwszej sprzedaży
-└── docs/olive-winter-pro-plan.md     # priorytet #1: 15 kroków od BOM do pierwszej sprzedaży
+├── docs/olive-winter-pro-plan.md     # priorytet #1: 15 kroków od BOM do pierwszej sprzedaży
+└── docs/prototypy-sklepu.md          # 5 koncepcji sklepu (wiedza + e-commerce) + prompty do mockupów
 ```
 
 ## Dwa silniki cenowe – kiedy który
