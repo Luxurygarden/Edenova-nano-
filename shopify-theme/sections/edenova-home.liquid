@@ -1,0 +1,232 @@
+{%- liquid
+  assign c_gws = collections['garden-wellbeing-system']
+  assign c_water = collections['nawadnianie-ogrodu']
+  assign c_light = collections['in-lite-oswietlenie-ogrodu']
+  assign c_bio = collections['biohort-architektura-i-porzadek-w-ogrodzie']
+  assign c_care = collections['plantcare-indywidualne-nawozenie-i-pielegnacja']
+  assign c_service = collections['serwis-i-pielegnacja-ogrodu']
+  assign c_plans = collections['plany-ogrodu-dopasowane-do-zycia']
+  assign free_pdf = all_products['7-sygnalow-ze-ogrod-nie-wspiera-codziennego-zycia']
+  assign hero_img = section.settings.hero_image
+  if hero_img == blank
+    assign hero_img = c_plans.image
+  endif
+-%}
+
+<div class="edx">
+
+  <section class="edx-hero">
+    <div class="edx-hero__media">
+      {%- if hero_img != blank -%}
+        {{ hero_img | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '750,1100,1600,2400', alt: '' }}
+      {%- endif -%}
+    </div>
+    <div class="edx-hero__shade"></div>
+    <div class="edx-wrap edx-hero__copy">
+      <p class="edx-over">Edenova · Garden Wellbeing System™</p>
+      <h1>Ogród nie jest dekoracją posesji.<br>Jest codziennym środowiskiem życia.</h1>
+      <p class="edx-lead">Projektujemy, budujemy i pielęgnujemy ogrody premium tak, żeby naprawdę się w nich żyło. 16 lat praktyki w Polsce i Niemczech, sprawdzone rozwiązania i jasny plan działania.</p>
+      <div class="edx-actions">
+        <a class="edx-btn edx-btn--gold" href="#edx-teraz">Zobacz ofertę</a>
+        {%- if free_pdf -%}<a class="edx-btn edx-btn--ghost" href="{{ free_pdf.url }}">7 sygnałów — za darmo</a>{%- endif -%}
+      </div>
+    </div>
+  </section>
+
+  <section class="edx-trust">
+    <div class="edx-wrap edx-trust__row">
+      <span>16 lat praktyki PL / DE</span>
+      <span>Ausbildung GaLaBau · ocena 1,0</span>
+      <span>Normy DIN · standard niemiecki</span>
+      <span>Bezpieczna płatność · BLIK · karty</span>
+    </div>
+  </section>
+
+  <section class="edx-wrap edx-block" id="edx-teraz">
+    <div class="edx-head">
+      <p class="edx-over">Na teraz · jesień i zima</p>
+      <h2>Zanim przyjdzie pierwszy mróz</h2>
+      <p>Rośliny w donicach marzną od korzeni, a niezazimowane nawadnianie pęka przy pierwszym przymrozku. Te rzeczy trzeba zrobić teraz.</p>
+    </div>
+    <div class="edx-grid edx-grid--4">
+      {%- assign now_handles = 'edenova-zestaw-zimowy-m-80-120-cm,edenova-zimowanie-nawadniania-do-6-sekcji,edenova-jesienna-opieka-ogrod-wizyta,edenova-rootcare-oliwki-donice' | split: ',' -%}
+      {%- for h in now_handles -%}
+        {%- assign p = all_products[h] -%}
+        {%- if p != blank -%}
+          <a class="edx-card" href="{{ p.url }}">
+            <div class="edx-card__img">{%- if p.featured_image -%}{{ p.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 50vw', widths: '400,600,800' }}{%- endif -%}</div>
+            <div class="edx-card__body">
+              <h3>{{ p.title | escape }}</h3>
+              <p class="edx-price">{% if p.price_varies %}od {% endif %}{{ p.price_min | money }}</p>
+            </div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <section class="edx-dark">
+    <div class="edx-wrap edx-block">
+      <div class="edx-head">
+        <p class="edx-over">Garden Wellbeing System™</p>
+        <h2>Nie oceniamy elementów ogrodu.<br>Oceniamy ich wpływ na człowieka.</h2>
+        <p>Większość ogrodów nie zawodzi wyglądem, tylko warunkami pobytu: za gorąco o czternastej, za ciemno po zmroku, sąsiad widzi stół. Zacznij od darmowego materiału i idź dalej tylko tak daleko, jak potrzebujesz.</p>
+      </div>
+      <ol class="edx-ladder">
+        {%- assign gws = '7-sygnalow-ze-ogrod-nie-wspiera-codziennego-zycia,samodzielna-ocena-ogrodu-komfort-regeneracja-i-codzienne-uzytkowanie,plan-poprawy-ogrodu-system-samodzielnego-audytu,audyt-ogrodu-z-ekspertem-prowadze-cie-krok-po-kroku,kompleksowy-garden-wellbeing-audit' | split: ',' -%}
+        {%- for h in gws -%}
+          {%- assign p = all_products[h] -%}
+          {%- if p != blank -%}
+            <li class="edx-step{% if forloop.last %} edx-step--top{% endif %}">
+              <a href="{{ p.url }}">
+                <span class="edx-step__n">Poziom {{ forloop.index0 }}</span>
+                <span class="edx-step__t">{{ p.title | escape }}</span>
+                <span class="edx-step__p">{% if p.price_min == 0 %}Bezpłatnie{% else %}{{ p.price_min | money }}{% endif %}</span>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ol>
+      {%- if c_gws -%}<a class="edx-link edx-link--light" href="{{ c_gws.url }}">Cała metoda Garden Wellbeing System →</a>{%- endif -%}
+    </div>
+  </section>
+
+  <section class="edx-wrap edx-block">
+    <div class="edx-head">
+      <p class="edx-over">Sklep i usługi</p>
+      <h2>Wszystko dla ogrodu premium w jednym miejscu</h2>
+      <p>Tylko rozwiązania, które sami montujemy i którym ufamy na budowie.</p>
+    </div>
+    <div class="edx-grid edx-grid--3">
+      {%- assign cats = 'nawadnianie-ogrodu,in-lite-oswietlenie-ogrodu,biohort-architektura-i-porzadek-w-ogrodzie,plantcare-indywidualne-nawozenie-i-pielegnacja,serwis-i-pielegnacja-ogrodu,plany-ogrodu-dopasowane-do-zycia' | split: ',' -%}
+      {%- for h in cats -%}
+        {%- assign c = collections[h] -%}
+        {%- if c != blank -%}
+          <a class="edx-cat" href="{{ c.url }}">
+            <div class="edx-cat__img">{%- if c.image -%}{{ c.image | image_url: width: 1000 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 33vw, 100vw', widths: '500,750,1000' }}{%- endif -%}</div>
+            <div class="edx-cat__body"><h3>{{ c.title | escape }}</h3><span>{{ c.products_count }} pozycji →</span></div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <section class="edx-paper">
+    <div class="edx-wrap edx-block edx-about">
+      <div class="edx-about__img">
+        {%- if section.settings.about_image != blank -%}
+          {{ section.settings.about_image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 45vw, 100vw', widths: '600,900,1200' }}
+        {%- endif -%}
+      </div>
+      <div>
+        <p class="edx-over">Założyciel</p>
+        <h2>Piotr Leon</h2>
+        <p>Od 14. roku życia w ogrodach premium w Niemczech. Ausbildung Garten- und Landschaftsbau w Wiesbaden z oceną 1,0, potem prowadzenie budów przy inwestycjach wartych miliony euro. Dziś ten sam niemiecki standard w polskich ogrodach.</p>
+        <blockquote>„Nie ma budowy bez problemów. Dlatego nauczyłem się przede wszystkim jednego — rozwiązywać je szybko, technicznie i na podstawie wiedzy.”</blockquote>
+        <a class="edx-btn edx-btn--dark" href="/pages/contact">Porozmawiajmy o Twoim ogrodzie</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="edx-cta">
+    <div class="edx-wrap edx-block">
+      <h2>Nie wiesz, od czego zacząć?</h2>
+      <p>Pobierz bezpłatnie „7 sygnałów, że ogród nie wspiera codziennego życia” i w 10 minut sprawdź, co w Twoim ogrodzie nie działa.</p>
+      {%- if free_pdf -%}<a class="edx-btn edx-btn--gold" href="{{ free_pdf.url }}">Pobierz za darmo</a>{%- endif -%}
+    </div>
+  </section>
+
+</div>
+
+{% stylesheet %}
+.edx{--ink:#1A1B18;--olive:#283128;--olive2:#707756;--gold:#B89655;--goldsoft:#D9C390;--paper:#F4F0E8;--paper2:#FBF9F4;--line:#D7C9B1;color:var(--ink);background:var(--paper2)}
+.edx *{box-sizing:border-box}
+.edx-wrap{max-width:1320px;margin:0 auto;padding:0 24px}
+.edx-block{padding-top:88px;padding-bottom:88px}
+.edx h1,.edx h2,.edx h3{font-family:Georgia,"Source Serif 4",serif;font-weight:400;letter-spacing:-.01em;margin:0}
+.edx h1{font-size:clamp(34px,5.2vw,68px);line-height:1.08}
+.edx h2{font-size:clamp(28px,3.4vw,44px);line-height:1.15}
+.edx h3{font-size:20px;line-height:1.3}
+.edx p{line-height:1.65;margin:0}
+.edx-over{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px!important}
+.edx-head{max-width:760px;margin-bottom:44px}
+.edx-head p:not(.edx-over){margin-top:16px;color:#4E514A;font-size:17px}
+.edx-hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;color:var(--paper);overflow:hidden;background:var(--olive)}
+.edx-hero__media,.edx-hero__shade{position:absolute;inset:0}
+.edx-hero__media img{width:100%;height:100%;object-fit:cover}
+.edx-hero__shade{background:linear-gradient(180deg,rgba(20,25,20,.15) 0%,rgba(20,25,20,.35) 45%,rgba(20,25,20,.85) 100%)}
+.edx-hero__copy{position:relative;padding-bottom:9vh;padding-top:120px}
+.edx-hero .edx-over{color:var(--goldsoft)}
+.edx-lead{max-width:620px;margin-top:24px!important;font-size:18px;color:rgba(244,240,232,.88)}
+.edx-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.edx-btn{display:inline-block;padding:16px 28px;border-radius:2px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.edx-btn--gold{background:var(--gold);color:#1A1B18}
+.edx-btn--gold:hover{background:var(--goldsoft)}
+.edx-btn--ghost{border:1px solid rgba(244,240,232,.6);color:var(--paper)}
+.edx-btn--ghost:hover{border-color:var(--gold);color:var(--goldsoft)}
+.edx-btn--dark{background:var(--olive);color:var(--paper);margin-top:28px}
+.edx-btn--dark:hover{background:#1c231c}
+.edx-trust{background:var(--olive);color:rgba(244,240,232,.8);border-top:1px solid rgba(184,150,85,.35)}
+.edx-trust__row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 28px;padding-top:18px;padding-bottom:18px;font-size:13px;letter-spacing:.06em}
+.edx-grid{display:grid;gap:24px}
+.edx-grid--4{grid-template-columns:repeat(4,1fr)}
+.edx-grid--3{grid-template-columns:repeat(3,1fr)}
+.edx-card,.edx-cat{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #ebe4d6;transition:transform .25s,box-shadow .25s}
+.edx-card:hover,.edx-cat:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(40,49,40,.12)}
+.edx-card__img,.edx-cat__img{aspect-ratio:4/3;background:var(--paper);overflow:hidden}
+.edx-card__img img,.edx-cat__img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.edx-card:hover img,.edx-cat:hover img{transform:scale(1.04)}
+.edx-card__body,.edx-cat__body{padding:20px 22px 24px}
+.edx-price{margin-top:10px!important;color:var(--olive2);font-size:15px}
+.edx-cat__body span{display:block;margin-top:8px;font-size:13px;letter-spacing:.06em;color:var(--gold)}
+.edx-dark{background:var(--olive);color:var(--paper)}
+.edx-dark .edx-head p:not(.edx-over){color:rgba(244,240,232,.78)}
+.edx-ladder{list-style:none;margin:0 0 36px;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid rgba(184,150,85,.5)}
+.edx-step a{display:flex;flex-direction:column;gap:12px;height:100%;padding:26px 20px 28px;color:var(--paper);text-decoration:none;border-right:1px solid rgba(244,240,232,.12);transition:background .2s}
+.edx-step a:hover{background:rgba(184,150,85,.1)}
+.edx-step__n{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--goldsoft)}
+.edx-step__t{font-family:Georgia,serif;font-size:18px;line-height:1.35}
+.edx-step__p{margin-top:auto;font-size:15px;color:var(--gold)}
+.edx-step--top a{background:rgba(184,150,85,.14);border-right:none}
+.edx-link{color:var(--olive);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px}
+.edx-link--light{color:var(--goldsoft)}
+.edx-paper{background:var(--paper)}
+.edx-about{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.edx-about__img{aspect-ratio:4/5;background:#e6dfd1;overflow:hidden}
+.edx-about__img img{width:100%;height:100%;object-fit:cover}
+.edx-about p:not(.edx-over){margin-top:20px;color:#4E514A;font-size:17px}
+.edx-about blockquote{margin:28px 0 0;padding-left:20px;border-left:2px solid var(--gold);font-family:Georgia,serif;font-style:italic;font-size:20px;line-height:1.5;color:var(--ink)}
+.edx-cta{background:var(--paper2);text-align:center;border-top:1px solid var(--line)}
+.edx-cta p{max-width:620px;margin:16px auto 32px!important;color:#4E514A;font-size:17px}
+@media (max-width:989px){
+  .edx-grid--4{grid-template-columns:repeat(2,1fr)}
+  .edx-grid--3{grid-template-columns:1fr 1fr}
+  .edx-ladder{grid-template-columns:1fr}
+  .edx-step a{border-right:none;border-bottom:1px solid rgba(244,240,232,.12);flex-direction:row;align-items:baseline;flex-wrap:wrap}
+  .edx-step__t{flex:1 1 60%}
+  .edx-about{grid-template-columns:1fr;gap:32px}
+  .edx-block{padding-top:64px;padding-bottom:64px}
+}
+@media (max-width:599px){
+  .edx-wrap{padding:0 16px}
+  .edx-grid--4,.edx-grid--3{grid-template-columns:1fr 1fr;gap:12px}
+  .edx-grid--3{grid-template-columns:1fr}
+  .edx-card__body{padding:14px}
+  .edx h3{font-size:16px}
+  .edx-hero{min-height:82vh}
+  .edx-lead{font-size:16px}
+  .edx-btn{width:100%;text-align:center}
+  .edx-trust__row{justify-content:flex-start;font-size:12px}
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "EDENOVA — strona główna",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "Zdjęcie główne (hero)" },
+    { "type": "image_picker", "id": "about_image", "label": "Zdjęcie: Piotr / realizacja" }
+  ],
+  "presets": [{ "name": "EDENOVA — strona główna" }]
+}
+{% endschema %}

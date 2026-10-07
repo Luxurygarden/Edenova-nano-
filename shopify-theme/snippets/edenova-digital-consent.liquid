@@ -1,0 +1,104 @@
+{%- comment -%}
+  Zgoda na utratę prawa odstąpienia dla treści cyfrowych (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta).
+  Gdy w koszyku jest produkt cyfrowy, przejście do kasy wymaga zaznaczenia zgody.
+  Zgoda zapisuje się w atrybutach zamówienia (widoczna w panelu zamówienia).
+{%- endcomment -%}
+{%- liquid
+  assign digital_handles = ''
+  for p in collections['materialy-i-pakiety-cyfrowe'].products
+    assign digital_handles = digital_handles | append: p.handle | append: ','
+  endfor
+-%}
+<div id="edx-consent" class="edx-consent" hidden role="dialog" aria-modal="true" aria-labelledby="edx-consent-title">
+  <div class="edx-consent__box">
+    <h2 id="edx-consent-title">Zgoda na dostarczenie treści cyfrowej</h2>
+    <p>W koszyku masz produkt cyfrowy (PDF). Plik otrzymasz od razu po zakupie.</p>
+    <label class="edx-consent__check">
+      <input type="checkbox" id="edx-consent-input">
+      <span>Żądam rozpoczęcia dostarczania treści cyfrowej przed upływem terminu do odstąpienia od umowy i przyjmuję do wiadomości, że w ten sposób tracę prawo odstąpienia od umowy (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta).</span>
+    </label>
+    <div class="edx-consent__actions">
+      <button type="button" class="edx-consent__cancel" id="edx-consent-cancel">Wróć</button>
+      <button type="button" class="edx-consent__ok" id="edx-consent-ok" disabled>Przejdź do płatności</button>
+    </div>
+  </div>
+</div>
+<style>
+.edx-consent{position:fixed;inset:0;z-index:9999;background:rgba(20,25,20,.6);display:flex;align-items:center;justify-content:center;padding:16px}
+.edx-consent[hidden]{display:none}
+.edx-consent__box{background:#FBF9F4;color:#1A1B18;max-width:560px;width:100%;padding:32px;border-top:3px solid #B89655}
+.edx-consent__box h2{font-family:Georgia,serif;font-weight:400;font-size:24px;margin:0 0 12px}
+.edx-consent__box p{margin:0 0 20px;line-height:1.6}
+.edx-consent__check{display:flex;gap:12px;align-items:flex-start;line-height:1.55;font-size:15px;cursor:pointer}
+.edx-consent__check input{margin-top:4px;width:20px;height:20px;flex:0 0 20px;accent-color:#283128}
+.edx-consent__actions{display:flex;gap:12px;justify-content:flex-end;margin-top:28px;flex-wrap:wrap}
+.edx-consent__actions button{padding:14px 22px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;border:1px solid #283128;cursor:pointer}
+.edx-consent__cancel{background:transparent;color:#283128}
+.edx-consent__ok{background:#283128;color:#F4F0E8}
+.edx-consent__ok[disabled]{opacity:.4;cursor:not-allowed}
+</style>
+<script>
+(function(){
+  var DIGITAL = {{ digital_handles | split: ',' | compact | json }};
+  var ATTR = 'Zgoda na utratę prawa odstąpienia (treść cyfrowa)';
+  var modal = document.getElementById('edx-consent');
+  var input = document.getElementById('edx-consent-input');
+  var ok = document.getElementById('edx-consent-ok');
+  var cancel = document.getElementById('edx-consent-cancel');
+  var busy = false;
+
+  input.addEventListener('change', function(){ ok.disabled = !input.checked; });
+  cancel.addEventListener('click', function(){ modal.hidden = true; });
+
+  function needsConsent(){
+    return fetch('/cart.js', {headers:{'Accept':'application/json'}})
+      .then(function(r){ return r.json(); })
+      .then(function(cart){
+        var hasDigital = cart.items.some(function(i){ return DIGITAL.indexOf(i.handle) !== -1; });
+        var agreed = cart.attributes && cart.attributes[ATTR];
+        return hasDigital && !agreed;
+      })
+      .catch(function(){ return false; });
+  }
+
+  ok.addEventListener('click', function(){
+    if (!input.checked) return;
+    var attrs = {}; attrs[ATTR] = 'TAK — ' + new Date().toISOString();
+    fetch('/cart/update.js', {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify({attributes: attrs})})
+      .then(function(){ window.location.href = '/checkout'; });
+  });
+
+  function isCheckoutTrigger(el){
+    if (!el) return false;
+    var btn = el.closest('[name="checkout"], a[href^="/checkout"], button[form][name="checkout"], .cart__checkout-button, [data-checkout]');
+    return btn;
+  }
+
+  document.addEventListener('click', function(e){
+    if (busy) return;
+    var t = isCheckoutTrigger(e.target);
+    if (!t) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    busy = true;
+    needsConsent().then(function(need){
+      busy = false;
+      if (need) { input.checked = false; ok.disabled = true; modal.hidden = false; input.focus(); }
+      else { window.location.href = '/checkout'; }
+    });
+  }, true);
+
+  document.addEventListener('submit', function(e){
+    var f = e.target;
+    var action = (f.getAttribute('action') || '');
+    if (!(action.indexOf('/checkout') !== -1 || (action.indexOf('/cart') !== -1 && e.submitter && e.submitter.name === 'checkout'))) return;
+    if (busy) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    busy = true;
+    needsConsent().then(function(need){
+      busy = false;
+      if (need) { input.checked = false; ok.disabled = true; modal.hidden = false; }
+      else { window.location.href = '/checkout'; }
+    });
+  }, true);
+})();
+</script>

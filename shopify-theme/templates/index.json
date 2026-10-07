@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "edenova_home": {
+      "type": "edenova-home",
+      "settings": {}
+    }
+  },
+  "order": [
+    "edenova_home"
+  ]
+}
