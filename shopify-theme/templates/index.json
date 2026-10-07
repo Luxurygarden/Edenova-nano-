@@ -2,7 +2,10 @@
   "sections": {
     "edenova_home": {
       "type": "edenova-home",
-      "settings": {}
+      "settings": {
+        "hero_image": "shopify://shop_images/download_c709a496-e485-4405-b55f-2956bc2f0c64.png",
+        "about_image": "shopify://shop_images/download.png"
+      }
     }
   },
   "order": [
