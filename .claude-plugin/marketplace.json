@@ -1,0 +1,5 @@
+{
+  "name": "edenova",
+  "owner": { "name": "Piotr Leon" },
+  "plugins": [{ "name": "edenova-klienci", "source": "./mods/edenova-klienci" }]
+}
